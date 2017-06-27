@@ -15,7 +15,6 @@ export default class Carousel extends React.Component {
             x=ary.length-1;
         }
 
-
         this.setState({
             data: ary[x],
             value: x

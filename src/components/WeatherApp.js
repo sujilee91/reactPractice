@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import CityWeather from './CityWeather';
+import ClockApi from '../lib/ClockApi'
 import Carousel from './Carousel';
 import WeatherApi from '../lib/WeatherApi';
 import style from '../style/app.scss';
@@ -21,17 +22,15 @@ export default class WeatherApp extends React.Component {
         //this.onPrevClick = this.onPrevClick.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const weatherApi = new WeatherApi();
+        const timeApi = new ClockApi();
         let weatherData = [];
         let weatherAry = [];
         let x = 0;
         weatherApi.loaddata().then((data) => {
-            //weatherData.push(data);
-                weatherData = data;
-            //
+            weatherData = data;
 
-            //
             weatherAry = weatherData[x];
             this.setState({
                 data: weatherData[x],
@@ -53,8 +52,8 @@ export default class WeatherApp extends React.Component {
             //     }
             // }, 3000);
 
-            })
-        }
+        })
+    }
 
         onPrevClick = () =>{
             let ary = this.state.ary;
@@ -70,7 +69,7 @@ export default class WeatherApp extends React.Component {
                 data: ary[x],
                 value: x
             })
-        }
+        };
 
         onNextClick = () => {
             let ary = this.state.ary;
@@ -85,9 +84,9 @@ export default class WeatherApp extends React.Component {
                 data: ary[x],
                 value: x
             })
-        }
+        };
 
-        render() {
+        render(){
 
             // setInterval(()=>{
             //     weatherAry = weatherData[x];
