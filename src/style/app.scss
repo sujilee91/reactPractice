@@ -1,0 +1,149 @@
+body{
+  background-color: rgba(251,43,43,1);
+  font-family: CM Trade Gothic LT Std;
+}
+
+div{
+  margin-top: 5%;
+}
+img{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-left: -8px;
+}
+
+.footerImg{
+  z-index: -1;
+}
+
+.dateStyle{
+  color: white;
+  font-weight: bold;
+  text-align: right;
+  font-size: 3em;
+}
+
+.cityName{
+  display: block;
+  text-align: center;
+  font-size: 7em;
+}
+.left
+{
+  text-align: right;
+  padding-left: 80px;
+  padding-top: 30px;
+}
+.right
+ {
+   text-align: left;
+   height: 100%;
+   font-size: 2.5em;
+  div{
+    padding-top: 15px;
+  }
+ }
+
+.weather{
+  text-align: center;
+  font-size: 10em;
+  color: white
+}
+
+button{
+  color: white;
+  font-size: 4em;
+  height: 100%;
+  width: 50%;
+  &.next{
+    text-align: right;
+    float: right;
+    margin-right: 0;
+  }
+
+  &.previous{
+    text-align: left;
+    margin-left: 0;
+    float: left;
+  }
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+table{
+  width: 100%;
+  height:100%;
+  font-size: 1.2em;
+  padding-top: 25px;
+}
+
+td{
+  margin: 10px;
+  padding: 20px;
+  padding-left: 0;
+  &.printStyle
+  {
+    text-align: right;
+    height: 100%;
+    color: white;
+    font-weight: lighter;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+.line{
+  display: block;
+  position: absolute;
+  background-color: white;
+  width: 3px;
+  height: 345px;
+  animation: lineRotate 2s;
+}
+
+.titleStyle
+{
+  text-align: center;
+  margin-top: 350px;
+  font-size: 240px;
+  color: white;
+  animation: title 5s;
+  animation-fill-mode: forwards;
+  height: 0;
+  img
+  {
+    position: inherit;
+    width: 50%;
+  }
+}
+
+
+@keyframes title {
+  from  {
+    display: flex;
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    margin-top: 0;
+  }
+}
+
+@keyframes lineRotate {
+  from  {
+    height: 1px;
+  }
+
+  to {
+    height: 345px;
+  }
+}
+
