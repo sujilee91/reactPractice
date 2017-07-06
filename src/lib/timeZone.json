@@ -1,0 +1,32 @@
+[
+  {
+    "zone": "America/Edmonton"
+  },
+  {
+    "zone": "America/Chicago"
+  },
+  {
+    "zone": "America/Los_Angeles"
+  },
+  {
+    "zone": "Asia/Hong_Kong"
+  },
+  {
+    "zone": "America/Los_Angeles"
+  },
+  {
+    "zone": "America/Chicago"
+  },
+  {
+    "zone": "Europe/London"
+  },
+  {
+    "zone": "America/New_York"
+  },
+  {
+    "zone": "Asia/Singapore"
+  },
+  {
+    "zone": "America/Toronto"
+  }
+]
