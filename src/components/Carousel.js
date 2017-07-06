@@ -2,48 +2,69 @@
  * Created by sjlee on 2017-06-27.
  */
 import React from 'react';
-import CityWeather from './CityWeather'
+import moment from 'moment-timezone';
+import timeZone from '../lib/timeZone.json';
 
 export default class Carousel extends React.Component {
 
-    onPrevClick = () =>{
-        let ary = this.state.ary;
-        let y = this.state.value;
-        let x = y-1;
+    constructor(){
+        super();
+        this.state={
+            data:[]
+        }
+    }
 
-        if(x<=0){
-            x=ary.length-1;
+    componentWillReceiveProps(nextProps) {
+        if(this.props.children.length === 0 && nextProps.children.length !== 0){
+            let x=0;
+
+            this.setState({
+                data: nextProps.children[x],
+                ary: nextProps.children,
+                value: x
+            })
+        }
+    }
+
+    onButtonClick = (x)=>{
+        const childrenCount = React.Children.count(this.props.children);
+        let y = this.state.value;
+        let z = x+y;
+
+        if(z<0){
+            z = childrenCount -1;
+        }
+
+        if(z>= childrenCount){
+            z = 0;
         }
 
         this.setState({
-            data: ary[x],
-            value: x
-        })
+            data: this.props.children[z],
+            value: z
+        });
+
+
     };
 
-    onNextClick = () => {
-        let ary = this.state.ary;
-        let y = this.state.value;
-        let x = y+1;
-
-        if(x>ary.length-1){
-            x=0;
-        }
-
-        this.setState({
-            data: ary[x],
-            value: x
-        })
-    };
 
     render(){
-
         return(
         <div>
-            <button className="previous" onClick={this.onPrevClick}>&#8592;</button>
-            <button className="next" onClick={this.onNextClick}>&#8594; </button>
-            {/*<div className="logo"><img src={require('../style/img/CriticalMass-Logo-Web.jpg')}/></div>*/}
-            <CityWeather cityWeather = {this.state.data}/>
+            <button className="previous" onClick={()=>{this.onButtonClick(-1);}}>&#8592;</button>
+            <button className="next" onClick={()=>{this.onButtonClick(1);}}>&#8594;</button>
+            <div>{this.state.time}</div>
+            {/*/!*<div className="logo"><img src={require('../style/img/CriticalMass-Logo-Web.jpg')}/></div>*!/*/}
+            {/*<CityWeather cityWeather = {this.state.data}/>*/}
+                <div>
+                    {this.state.data}
+                </div>
+
+            {/*<div className="pager">*/}
+                {/*{this.props.children.map((item,index) => {*/}
+                    {/*return <button onClick={this.setActiveItem.bind(this,index)}>{index}</button>*/}
+                {/*}, this)}*/}
+            {/*</div>*/}
         </div>
 
         )}

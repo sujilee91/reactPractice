@@ -2,6 +2,8 @@
  * Created by sjlee on 2017-06-20.
  */
 import React from 'react';
+import moment from 'moment-timezone';
+import timeZone from '../lib/timeZone.json';
 
 const promAry = [];
 const officeId= [5913490, 4887398, 5391811, 1819729,5368361,4123271, 2643743, 5128581, 1880252, 6167865 ];
@@ -9,8 +11,6 @@ const officeId= [5913490, 4887398, 5391811, 1819729,5368361,4123271, 2643743, 51
 export default class WeatherApi {
     constructor() {
     }
-
-
 
     loaddata()
     {
@@ -24,36 +24,42 @@ export default class WeatherApi {
 
     getApi(i,officeId)
     {
+        let date = new Date();
+        let a =moment.tz(date,timeZone[i].zone) ;
+
         const citiData = officeId[i];
         const url = "http://api.openweathermap.org/data/2.5/weather?id="+citiData+"&APPID=45606c0d045edba553406deecb875a24";
 
         let prom = fetch(url).then( response => response.json())
-                            .then(data => this.insertDataToAry(data));
+                            .then(data => this.insertDataToAry(data,a));
 
         return prom;
     }
 
-    insertDataToAry(r){
+    insertDataToAry(r,a){
+        let dateString = a.format().substring(0,10);
+
+        let timeString = a.format().substring(11,16);
+
         const { humidity: hum, temp: tempK} = r.main;
         const { description: desc, main: weather} = r.weather[0];
-
-
         const cityCap = r.name.toUpperCase();
         const tempC = (tempK-273.15).toFixed(2);
         const tempF =  ((9/5)*(tempK - 273) + 32).toFixed(2);
         // dataAry.push([cityCap, weather, tempC, tempF, hum, desc]);
-
         const weatherObj = {
             cityName: cityCap,
+            date: dateString,
+            time: timeString,
             weather: weather,
             tempC: tempC,
             tempF: tempF,
             humidity: hum,
-            description: desc
-        }
-
+            description: desc,
+        };
         return weatherObj;
     }
+
 }
 
 // function setData2() {

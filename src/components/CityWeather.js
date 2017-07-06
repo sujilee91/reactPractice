@@ -10,37 +10,19 @@ export default class CityWeather extends React.Component {
        render() {
 
            CityWeather.propTypes = {
-               cityWeather: PropTypes.object,
+               cityWeather: PropTypes.array
            };
-        const weatherData = this.props.cityWeather;
 
-        const today = new Date();
-        const year = today.getFullYear();
-        const date = today.getDate();
-        const month = today.getMonth();
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"];
-
-        const dayPrint = monthNames[month] + ' ' +date +' , '+ year;
-        let hour = today.getHours();
-        let min = ('0'+today.getMinutes()).slice(-2);
-        let amPm = "a.m.";
-        if(today.getHours() > 12)
-        {
-            hour = hour -12
-            amPm = "p.m."
-        }
+           const weatherData = this.props.cityWeather;
 
 
-           const dayTime = hour + ":" + today.getMinutes() + " " + amPm;
-        console.log(dayTime);
+        //
 
         return (
             <div>
                 <div className="cityName">{weatherData.cityName}</div>
-
                 <ul>
-                    <li className="left"> <div className="dateStyle">{dayPrint}</div><div className="clock">{dayTime}</div><div className="weather">{weatherData.weather}</div> </li>
+                    <li className="left"> <div className="dateStyle">{weatherData.date}</div><div className="clock">{weatherData.time}</div><div className="weather">{weatherData.weather}</div> </li>
                     <li className="right">
                         <div className="item-2">
                             <table>
@@ -58,3 +40,24 @@ export default class CityWeather extends React.Component {
         );
     }
 }
+
+
+//const today = new Date();
+// const year = today.getFullYear();
+// const date = today.getDate();
+// const month = today.getMonth();
+// const monthNames = ["January", "February", "March", "April", "May", "June",
+//     "July", "August", "September", "October", "November", "December"];
+//
+// const dayPrint = monthNames[month] + ' ' +date +' , '+ year;
+// let hour = today.getHours();
+// let min = ('0'+today.getMinutes()).slice(-2);
+// let amPm = "a.m.";
+// if(today.getHours() > 12)
+// {
+//     hour = hour -12
+//     amPm = "p.m."
+// }
+//
+//    const dayTime = hour + ":" + today.getMinutes() + " " + amPm;
+// console.log(dayTime);
