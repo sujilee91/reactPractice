@@ -7,11 +7,12 @@ import style from '../style/app.scss';
 
 export default class CityWeather extends React.Component {
 
+
        render() {
 
-           CityWeather.propTypes = {
-               cityWeather: PropTypes.array
-           };
+           // CityWeather.propTypes = {
+           //     cityWeather: PropTypes.array
+           // };
 
            const weatherData = this.props.cityWeather;
 
