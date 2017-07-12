@@ -4,8 +4,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from '../style/app.scss';
+import moment from 'moment-timezone';
+import timeZone from '../lib/timeZone.json';
 
 export default class CityWeather extends React.Component {
+
+        constructor(props){
+            super(props);
+            console.log(props);
+
+            this.state = {
+                time: "",
+                date:""
+            };
+        }
+        //
+        // getDateTime(r){
+        //     let date = new Date();
+        //     let a =moment.tz(date,timeZone[r].zone) ;
+        //
+        //     return a;
+        // }
+        //
+        // printDateTime(weatherData){
+        //     let r = weatherData.dataIndex;
+        //     let test = this.getDateTime(r)._d;
+        //
+        //     let stringify = test.toString();
+        //     let timeString = stringify.substring(16,25);
+        //     let dateString = stringify.substring(0,15);
+        //
+        // }
+        //
+
+
+        componentWillUnmount(){
+            clearInterval(this.timer);
+        }
+
+        componentDidMount(){
+            let x = this.props.cityWeather.dataIndex;
+
+            let dateString = this.props.cityWeather.timeData.format().substring(0,10);
+
+            this.setState({
+                date: dateString
+            });
+
+            this.timer = setInterval(()=>{
+                let date = new Date();
+                let a =moment.tz(date,timeZone[x].zone);
+
+                let timeString = a.format().substring(11,19);
+                this.setState({
+                    time:  timeString
+                });
+
+            }, 1000);
+        }
+
+
+
 
 
        render() {
@@ -13,23 +72,36 @@ export default class CityWeather extends React.Component {
            // CityWeather.propTypes = {
            //     cityWeather: PropTypes.array
            // };
-
+           // const timer = new timeZone();
+           // console.log(timer);
            const weatherData = this.props.cityWeather;
 
+           // let r = weatherData.dataIndex;
+           // let test = "";
+           // let timeString = "";
+           //  let stringify = "";
+           // setInterval(()=>{
+           //     test = this.getDateTime(r)._d;
+           //     stringify = test.toString();
+           //
+           //     timeString = stringify.substring(16,25);
+           // },1000);
+           //
+           // let dateString = stringify.substring(0,15);
+           //
 
-        //
 
         return (
             <div>
                 <div className="cityName">{weatherData.cityName}</div>
                 <ul>
-                    <li className="left"> <div className="dateStyle">{weatherData.date}</div><div className="clock">{weatherData.time}</div><div className="weather">{weatherData.weather}</div> </li>
+                    <li className="left"> <div className="dateStyle">{this.state.date}</div><div className="clock">{this.state.time}</div><div className="weather">{weatherData.weather}</div></li>
                     <li className="right">
                         <div className="item-2">
                             <table>
                                 <tbody>
-                                <tr><td>Temperature</td><td className="printStyle">{weatherData.tempC}<span>&#8451; / </span>{weatherData.tempF}<span>&#8457;</span></td> </tr>
-                                <tr><td>Humidity</td><td className="printStyle">{weatherData.humidity}<span>&#37;</span></td> </tr>
+                                <tr><td>Temperature</td><td className="printStyle">{weatherData.tempC}<span>&#8451; / </span>{weatherData.tempF}<span>&#8457;</span></td></tr>
+                                <tr><td>Humidity</td><td className="printStyle">{weatherData.humidity}<span>&#37;</span></td></tr>
                                 <tr><td>Description</td><td className="printStyle">{weatherData.description}</td></tr>
                                 </tbody>
                             </table>

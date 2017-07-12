@@ -22,8 +22,6 @@ export default class WeatherApp extends React.Component {
     componentDidMount() {
         const weatherApi = new WeatherApi();
         let weatherData = [];
-        let weatherAry = [];
-        let x = 0;
 
 
         weatherApi.loaddata().then((data) => {

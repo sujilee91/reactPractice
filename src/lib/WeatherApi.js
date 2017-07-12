@@ -31,12 +31,12 @@ export default class WeatherApi {
         const url = "http://api.openweathermap.org/data/2.5/weather?id="+citiData+"&APPID=45606c0d045edba553406deecb875a24";
 
         let prom = fetch(url).then( response => response.json())
-                            .then(data => this.insertDataToAry(data,a));
+                            .then(data => this.insertDataToAry(data,a,i));
 
         return prom;
     }
 
-    insertDataToAry(r,a){
+    insertDataToAry(r,a,i){
         let dateString = a.format().substring(0,10);
 
         let timeString = a.format().substring(11,16);
@@ -49,8 +49,8 @@ export default class WeatherApi {
         // dataAry.push([cityCap, weather, tempC, tempF, hum, desc]);
         const weatherObj = {
             cityName: cityCap,
-            date: dateString,
-            time: timeString,
+            dataIndex: i,
+            timeData: a,
             weather: weather,
             tempC: tempC,
             tempF: tempF,
