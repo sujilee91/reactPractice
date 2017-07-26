@@ -5,6 +5,7 @@ import React from 'react';
 import moment from 'moment-timezone';
 import timeZone from '../lib/timeZone.json';
 
+
 export default class Carousel extends React.Component {
 
     constructor(){
@@ -43,17 +44,14 @@ export default class Carousel extends React.Component {
             data: this.props.children[z],
             value: z
         });
-
-
     };
 
 
     render(){
         return(
         <div>
-            <button className="previous" onClick={()=>{this.onButtonClick(-1);}}>&#8592;</button>
-            <button className="next" onClick={()=>{this.onButtonClick(1);}}>&#8594;</button>
-            <div>{this.state.time}</div>
+            <a className="previous" onClick={()=>{this.onButtonClick(-1);}}>&#8592;</a>
+            <a className="next" onClick={()=>{this.onButtonClick(1);}}>&#8594;</a>
             {/*/!*<div className="logo"><img src={require('../style/img/CriticalMass-Logo-Web.jpg')}/></div>*!/*/}
             {/*<CityWeather cityWeather = {this.state.data}/>*/}
                 <div>

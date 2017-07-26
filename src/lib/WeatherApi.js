@@ -37,9 +37,8 @@ export default class WeatherApi {
     }
 
     insertDataToAry(r,a,i){
-        let dateString = a.format().substring(0,10);
 
-        let timeString = a.format().substring(11,16);
+        const background = timeZone[i].img;
 
         const { humidity: hum, temp: tempK} = r.main;
         const { description: desc, main: weather} = r.weather[0];
@@ -51,6 +50,7 @@ export default class WeatherApi {
             cityName: cityCap,
             dataIndex: i,
             timeData: a,
+            BackImg: background,
             weather: weather,
             tempC: tempC,
             tempF: tempF,

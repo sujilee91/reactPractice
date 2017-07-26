@@ -1,32 +1,43 @@
 [
   {
-    "zone": "America/Edmonton"
+    "zone": "America/Edmonton",
+    "img": "../style/img/Panorama_of_eastern_Calgary_skyline_-_Kevin_Cappis.jpg"
   },
   {
-    "zone": "America/Chicago"
+    "zone": "America/Chicago",
+    "img": "../style/img/chicago.jpg"
   },
   {
-    "zone": "America/Los_Angeles"
+    "zone": "America/Los_Angeles",
+    "img": "../style/img/sandiego.jpg"
+
   },
   {
-    "zone": "Asia/Hong_Kong"
+    "zone": "Asia/Hong_Kong",
+    "img": "../style/img/Hongkong.jpg"
   },
   {
-    "zone": "America/Los_Angeles"
+    "zone": "America/Los_Angeles",
+    "img": "../style/img/la.jpg"
   },
   {
-    "zone": "America/Chicago"
+    "zone": "America/Chicago",
+    "img": "../style/img/nash.jpg"
   },
   {
-    "zone": "Europe/London"
+    "zone": "Europe/London",
+    "img": "../style/img/london.jpg"
   },
   {
-    "zone": "America/New_York"
+    "zone": "America/New_York",
+    "img": "../style/img/ny.jpg"
   },
   {
-    "zone": "Asia/Singapore"
+    "zone": "Asia/Singapore",
+    "img": "../style/img/sing.jpg"
   },
   {
-    "zone": "America/Toronto"
+    "zone": "America/Toronto",
+    "img": "../style/img/tor.jpg"
   }
 ]

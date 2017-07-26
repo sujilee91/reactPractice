@@ -7,15 +7,19 @@ import style from '../style/app.scss';
 import moment from 'moment-timezone';
 import timeZone from '../lib/timeZone.json';
 
+
 export default class CityWeather extends React.Component {
 
         constructor(props){
             super(props);
-            console.log(props);
 
+            let x = this.props.cityWeather.dataIndex;
             this.state = {
                 time: "",
-                date:""
+                date:"",
+                backgroundStyle: {
+                    backgroundImage: `url('${this.props.cityWeather.BackImg}')`
+                }
             };
         }
         //
@@ -42,13 +46,29 @@ export default class CityWeather extends React.Component {
             clearInterval(this.timer);
         }
 
+        componentWillMount(){
+            let x = this.props.cityWeather.dataIndex;
+            let date = new Date();
+            let a =moment.tz(date,timeZone[x].zone);
+            let timeString = a.format().substring(11,19);
+            this.setState({
+                time: timeString,
+                backgroundStyle: {
+                    img: `url('${this.props.cityWeather.BackImg}')`
+                }
+            })
+        }
+
         componentDidMount(){
             let x = this.props.cityWeather.dataIndex;
 
             let dateString = this.props.cityWeather.timeData.format().substring(0,10);
 
             this.setState({
-                date: dateString
+                date: dateString,
+                backgroundStyle: {
+                    img: `url('${this.props.cityWeather.BackImg}')`
+                }
             });
 
             this.timer = setInterval(()=>{
@@ -62,7 +82,6 @@ export default class CityWeather extends React.Component {
 
             }, 1000);
         }
-
 
 
 
@@ -89,10 +108,8 @@ export default class CityWeather extends React.Component {
            //
            // let dateString = stringify.substring(0,15);
            //
-
-
-        return (
-            <div>
+           return (
+            <div style={this.state.backgroundStyle}>
                 <div className="cityName">{weatherData.cityName}</div>
                 <ul>
                     <li className="left"> <div className="dateStyle">{this.state.date}</div><div className="clock">{this.state.time}</div><div className="weather">{weatherData.weather}</div></li>
@@ -100,7 +117,7 @@ export default class CityWeather extends React.Component {
                         <div className="item-2">
                             <table>
                                 <tbody>
-                                <tr><td>Temperature</td><td className="printStyle">{weatherData.tempC}<span>&#8451; / </span>{weatherData.tempF}<span>&#8457;</span></td></tr>
+                                <tr><td>Temperature</td><td className="printStyle">{weatherData.tempC}<span> &#8451;</span></td></tr>
                                 <tr><td>Humidity</td><td className="printStyle">{weatherData.humidity}<span>&#37;</span></td></tr>
                                 <tr><td>Description</td><td className="printStyle">{weatherData.description}</td></tr>
                                 </tbody>
